@@ -1,69 +1,124 @@
-import Image from "next/image";
+import { Metadata } from "next";
+import { getContent } from "@/lib/content";
+import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
+import About from "@/components/About";
+import PortfolioCarousel from "@/components/PortfolioCarousel";
+import Partners from "@/components/Partners";
+import Testimonials from "@/components/Testimonials";
+import Faq from "@/components/Faq";
+import SocialAndFooter from "@/components/SocialAndFooter";
+import FloatingWhatsApp from "@/components/FloatingWhatsApp";
+import SeoSchema from "@/components/SeoSchema";
 
-export default function Home() {
+export const dynamic = "force-dynamic";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const content = await getContent();
+  const { seo, company } = content;
+
+  return {
+    title: seo.metaTitle,
+    description: seo.metaDescription,
+    keywords: seo.keywords,
+    authors: [{ name: company.name }],
+    openGraph: {
+      title: seo.metaTitle,
+      description: seo.metaDescription,
+      url: seo.canonicalUrl,
+      siteName: company.name,
+      images: [
+        {
+          url: seo.ogImage,
+          width: 1200,
+          height: 630,
+          alt: `${company.name} - Jamuan Katering Premium`,
+        },
+      ],
+      locale: "id_ID",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: seo.metaTitle,
+      description: seo.metaDescription,
+      images: [seo.ogImage],
+    },
+    alternates: {
+      canonical: seo.canonicalUrl,
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
+  };
+}
+
+export default async function HomePage() {
+  const content = await getContent();
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+    <div className="min-h-screen bg-[#FAF8F5] text-[#1C1917] flex flex-col font-sans selection:bg-[#B38E5D]/20 selection:text-[#1C1917]">
+      {/* Schema Markup for Google SEO */}
+      <SeoSchema content={content} />
+
+      {/* Navigation Header */}
+      <Navbar company={content.company} />
+
+      {/* Main Content Sections */}
+      <main className="flex-1">
+        {/* 1. Hero Section */}
+        {content.sectionVisibility?.hero !== false && (
+          <Hero company={content.company} hero={content.hero} />
+        )}
+
+        {/* 2. About Section */}
+        {content.sectionVisibility?.about !== false && (
+          <About about={content.about} />
+        )}
+
+        {/* 3. Portfolio Event Section (Carousel, Max 10 Photos) */}
+        {content.sectionVisibility?.portfolio !== false && (
+          <PortfolioCarousel
+            portfolio={content.portfolio}
+            config={content.portfolioSection}
+          />
+        )}
+
+        {/* 4. Mitra & Klien Section (Telkomsel, Indosat, XL, BCA, Mandiri, dll.) */}
+        {content.sectionVisibility?.partners !== false && (
+          <Partners
+            partners={content.partners}
+            config={content.partnersSection}
+          />
+        )}
+
+        {/* 5. Testimonials Section */}
+        {content.sectionVisibility?.testimonials !== false && (
+          <Testimonials
+            testimonials={content.testimonials}
+            config={content.testimonialsSection}
+          />
+        )}
+
+        {/* 6. FAQ Section */}
+        {content.sectionVisibility?.faqs !== false && (
+          <Faq faqs={content.faqs} config={content.faqsSection} />
+        )}
       </main>
+
+      {/* Social Media Connections & Footer */}
+      <SocialAndFooter company={content.company} />
+
+      {/* Floating Instant WhatsApp Button */}
+      <FloatingWhatsApp company={content.company} />
     </div>
   );
 }

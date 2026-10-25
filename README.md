@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Royal Rasa Catering & Event - Fullstack Next.js Website & CMS
 
-## Getting Started
+Website Landing Page & Content Management System (CMS) Premium untuk usaha Jasa Boga & Catering, dibangun dengan standar Fullstack Next.js modern, ramah SEO, dan **100% Tanpa Database (Flat-File Storage)**.
 
-First, run the development server:
+---
 
+## 🌟 Fitur Utama Website
+
+1. **Desain Mewah & Responsif (Luxury Aesthetic):**
+   - Palette warna *Dark Charcoal, Royal Amber Gold, & Emerald*.
+   - Responsive di seluruh ukuran layar (Mobile, Tablet, Desktop).
+
+2. **Koneksi Sosial Media Terintegrasi Penuh:**
+   - **WhatsApp:** Tombol Live Chat langsung dengan pesan otomatis (*prefilled text*) untuk konsultasi menu dan floating button beranimasi.
+   - **Instagram:** Direct button ke akun Instagram profil & feed.
+   - **Facebook:** Direct button ke halaman Facebook resmi.
+
+3. **Dokumentasi Event & Portofolio Carousel (Maksimal 10 Foto):**
+   - Slider / Carousel otomatis dan interaktif.
+   - Navigasi tombol panah, indikator titik, dan thumbnail selector.
+   - Menampilkan detail acara: Tanggal, Skala Undangan (Tamu), Kategori, dan Deskripsi.
+   - Fitur **Lightbox Fullscreen Zoom** untuk melihat foto resolusi tinggi.
+
+4. **Section Mitra & Venue:**
+   - Menampilkan mitra ballroom, hotel bintang 5, BUMN, dan wedding platform (Hotel Mulia, Balai Kartini, Bridestory, Mandiri, Telkom, Plataran, Ritz-Carlton).
+
+5. **Paket Menu Interaktif:**
+   - Paket Wedding Sultan, Prasmanan Executive, Nasi Box Premium, dan VIP Private Dining.
+   - Tombol pesan langsung spesifik ke WhatsApp untuk setiap paket.
+
+6. **SEO Kelas Atas (Technical SEO & Schema.org):**
+   - Metadata lengkap (Title, Description, OpenGraph, Twitter Card).
+   - Dynamic **JSON-LD Schema Markup** Google (`CateringService`, `LocalBusiness`, `FoodEstablishment`, `AggregateRating`, `OpeningHoursSpecification`).
+   - Otomatis membuat `robots.txt` dan `sitemap.xml`.
+
+---
+
+## 🛠️ CMS Tanpa Database (Flat-File Storage)
+
+Sistem ini **tidak memerlukan MySQL / PostgreSQL / database server sama sekali**. 
+* Seluruh data teks, pengaturan, dan paket tersimpan dalam file:  
+  `src/data/catering-content.json`
+* File foto yang diunggah disimpan di folder:  
+  `public/uploads/`
+
+### Aturan Khusus Portofolio (Maksimal 10 Foto & Sistem Pengorbanan):
+* Portofolio memiliki kuota ketat maksimal **10 foto**.
+* Jika kuota sudah terisi penuh (10/10), form upload foto baru **otomatis terkunci** dengan peringatan:
+  > *"⚠️ Kuota Portofolio Penuh (10/10). Untuk mengunggah foto baru, Anda harus MENGORBANKAN / MENGHAPUS salah satu foto yang ada terlebih dahulu."*
+* Admin dapat:
+  1. Menekan tombol merah **"Korbankan Foto"** pada salah satu slot untuk mengosongkan 1 slot.
+  2. Atau menekan tombol **"Ganti Foto"** pada thumbnail slot tertentu untuk langsung menimpa foto lama dengan foto baru.
+  3. Mengatur urutan foto (Naik / Turun).
+
+---
+
+## 🚀 Cara Menjalankan
+
+Masuk ke folder `catering-web`:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cd catering-web
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Jalankan Development Server:
+```bash
+npm run dev
+```
+Buka browser:
+* **Website Utama:** [http://localhost:3000](http://localhost:3000)
+* **Dashboard CMS:** [http://localhost:3000/admin](http://localhost:3000/admin)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+> **Kredensial Akses CMS:**  
+> Masukkan PIN Admin: `admin123`

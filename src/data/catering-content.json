@@ -1,0 +1,322 @@
+{
+  "sectionVisibility": {
+    "hero": true,
+    "about": true,
+    "portfolio": true,
+    "partners": true,
+    "testimonials": true,
+    "faqs": true
+  },
+  "company": {
+    "name": "HSH Catering • Awesome Experience",
+    "tagline": "Kemewahan Cita Rasa Nusantara & Internasional untuk Momen Spesial Anda",
+    "description": "Penyedia jasa boga dan katering premium berpengalaman lebih dari 12 tahun. Melayani pesta pernikahan megah, jamuan kenegaraan, gala dinner perusahaan, hingga private dining keluarga dengan standar kebersihan bintang 5 dan sertifikasi halal resmi.",
+    "logoUrl": "/uploads/1792901895615_Logo_Katering_HSH_di_Perkebunan_Ceria.png",
+    "copyrightText": "Hak Cipta Dilindungi Undang-Undang.",
+    "establishedYear": 2012,
+    "phone": "+62 815-9200-0471",
+    "whatsapp": "6281592000471",
+    "whatsappPrefilledMessage": "Halo HSH Catering, saya ingin konsultasi paket catering & ketersediaan tanggal untuk acara saya.",
+    "instagram": "https://instagram.com/royalrasacatering",
+    "facebook": "https://www.instagram.com/cateringhsh/",
+    "email": "catering.hsh@gmail.com",
+    "address": "Kota Wisata, Amsterdam I4-75, Ciangsana, Gn Putri, Bogor 16968",
+    "city": "Kabupaten Bogor",
+    "openingHours": "Senin - Minggu: 08.00 - 20.00 WIB"
+  },
+  "seo": {
+    "metaTitle": "Royal Rasa Catering & Event | Catering Premium Jakarta",
+    "metaDescription": "Penyedia jasa boga dan katering premium berpengalaman lebih dari 12 tahun. Melayani pesta pernikahan megah, jamuan kenegaraan, gala dinner perusahaan, hingga private dining keluarga.",
+    "keywords": [
+      "catering premium Jakarta",
+      "jasa catering Jakarta",
+      "wedding catering",
+      "event catering"
+    ],
+    "ogImage": "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1200&q=80",
+    "canonicalUrl": "https://royalrasacatering.com"
+  },
+  "hero": {
+    "badge": "HSH Catering - Awesome Experience • Jakarta",
+    "headline": "Seni Jamuan Kuliner & Kesempurnaan Momen Istimewa Anda",
+    "subheadline": "Dari jamuan resepsi pernikahan impian hingga gala dinner prestisius. Kami memadukan bahan baku premium, estetika dekorasi boga, dan kehangatan layanan prima tanpa cela.",
+    "ctaWhatsappText": "Konsultasi Menu & Jadwal",
+    "ctaPortfolioText": "Eksplorasi Galeri Acara",
+    "stats": [
+      {
+        "id": "stat-1",
+        "value": "2.800+",
+        "label": "Acara Sukses",
+        "subtext": "Pernikahan & Event Korporat"
+      },
+      {
+        "id": "stat-2",
+        "value": "99.8%",
+        "label": "Tingkat Kepuasan",
+        "subtext": "Ulasan Positif Pelanggan"
+      },
+      {
+        "id": "stat-3",
+        "value": "12+ Thn",
+        "label": "Pengalaman Boga",
+        "subtext": "Dipercaya Hotel & BUMN"
+      },
+      {
+        "id": "stat-4",
+        "value": "100%",
+        "label": "Halal & Higienis",
+        "subtext": "Sertifikasi Resmi MUI"
+      }
+    ]
+  },
+  "about": {
+    "badge": "02 • TENTANG ROYAL RASA",
+    "title": "Dedikasi Rasa, Estetika Meja, dan Kenangan Jamuan yang Abadi.",
+    "subtitle": "Kami percaya jamuan lezat adalah detak jantung dari setiap pesta yang tak terlupakan.",
+    "story": "Berawal dari dapur keluarga di tahun 2012, Royal Rasa Catering kini tumbuh menjadi mitra boga terpercaya bagi ribuan pasangan pengantin dan instansi terkemuka di Jabodetabek. Dipimpin oleh Executive Chef lulusan Le Cordon Bleu serta tim banquet tersertifikasi, setiap hidangan disiapkan dengan disiplin kebersihan tertinggi, resep autentik nusantara, dan sentuhan modern internasional.",
+    "quote": "Bagi kami, katering bukan sekadar menyajikan makanan, melainkan mengukir rasa syukur dan senyum di setiap tamu kehormatan Anda.",
+    "quoteAuthor": "Chef Ronald Hartono",
+    "quoteRole": "Culinary Director & Executive Chef",
+    "features": [
+      {
+        "id": "feat-1",
+        "icon": "UtensilsCrossed",
+        "title": "Bahan Baku Pilihan Grade A",
+        "description": "Daging sapi impor premium, ikan segar harian, dan sayur organik pilihan dari petani mitra terverifikasi."
+      },
+      {
+        "id": "feat-2",
+        "icon": "Sparkles",
+        "title": "Food Presentation Berkelas",
+        "description": "Dekorasi meja prasmanan mewah dan plating artistik yang serasi dengan tema dekorasi pernikahan/event Anda."
+      },
+      {
+        "id": "feat-3",
+        "icon": "ShieldCheck",
+        "title": "Jaminan Higienitas & Halal",
+        "description": "Sistem sanitasi dapur berstandar HACCP dan 100% bahan baku tersertifikasi Halal MUI."
+      },
+      {
+        "id": "feat-4",
+        "icon": "HeartHandshake",
+        "title": "Free Food Tasting & Konsultasi",
+        "description": "Sesi cicip hidangan gratis di tasting lounge eksklusif kami bersama wedding planner & keluarga Anda."
+      }
+    ]
+  },
+  "portfolioSection": {
+    "badge": "03 • DOKUMENTASI ACARA",
+    "title": "Galeri Portofolio & Jamuan",
+    "subtitle": "Koleksi 10 dokumentasi event terpilih kami mulai dari resepsi pernikahan megah, gala dinner BUMN, hingga jamuan private dining."
+  },
+  "portfolio": [
+    {
+      "id": "port-1",
+      "title": "Grand Wedding Ballroom Reception",
+      "category": "Wedding Banquet",
+      "imageUrl": "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1200&q=80",
+      "eventDate": "12 Oktober 2026",
+      "guestCount": "1.200 Undangan",
+      "description": "Jamuan prasmanan adat Sunda modern di Grand Ballroom Hotel Mulia Senayan dengan 8 live cooking stall mewah."
+    },
+    {
+      "id": "port-2",
+      "title": "Intimate Garden Wedding Feast",
+      "category": "Intimate Wedding",
+      "imageUrl": "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1200&q=80",
+      "eventDate": "28 September 2026",
+      "guestCount": "250 Undangan",
+      "description": "Konsep jamuan rustic garden party di Plataran Cilandak dengan sajian roasted beef carving & pastry dessert bar."
+    },
+    {
+      "id": "port-3",
+      "title": "Annual Gala Dinner Bank Mandiri",
+      "category": "Corporate Event",
+      "imageUrl": "https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=1200&q=80",
+      "eventDate": "15 Agustus 2026",
+      "guestCount": "800 Eksekutif",
+      "description": "4-Course Fine Dining VIP set menu dilanjutkan prasmanan nusantara fusion di Ritz-Carlton Pacific Place."
+    },
+    {
+      "id": "port-4",
+      "title": "Royal Javanese Traditional Wedding",
+      "category": "Traditional Wedding",
+      "imageUrl": "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1200&q=80",
+      "eventDate": "04 Juli 2026",
+      "guestCount": "1.500 Undangan",
+      "description": "Pernikahan adat Jawa klasik di Balai Kartini dengan stall Nasi Liwet Solo, Selat Solo, dan Es Dawet Ayu segar."
+    },
+    {
+      "id": "port-5",
+      "title": "VIP Private Dining & Anniversary",
+      "category": "Private Dining",
+      "imageUrl": "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=1200&q=80",
+      "eventDate": "18 Juni 2026",
+      "guestCount": "60 Undangan",
+      "description": "Private live chef demonstration dan sajian Wagyu Tenderloin steak di Menteng Residence."
+    },
+    {
+      "id": "port-6",
+      "title": "Corporate Launching Telkomsel Enterprise",
+      "category": "Corporate Gathering",
+      "imageUrl": "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=80",
+      "eventDate": "22 Mei 2026",
+      "guestCount": "400 Tamu Bisnis",
+      "description": "Standing canapé & cocktail party food station dengan coffee bar barista eksklusif."
+    },
+    {
+      "id": "port-7",
+      "title": "Grand Tumpeng Syukuran BUMN",
+      "category": "Syukuran & Peresmian",
+      "imageUrl": "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80",
+      "eventDate": "09 April 2026",
+      "guestCount": "300 Undangan",
+      "description": "Tumpeng megah 7 tingkat berhias ukiran sayur artistik lengkap dengan lauk-pauk keraton istimewa."
+    },
+    {
+      "id": "port-8",
+      "title": "Sunset Beach Wedding Reception",
+      "category": "Destination Wedding",
+      "imageUrl": "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80",
+      "eventDate": "14 Maret 2026",
+      "guestCount": "180 Undangan",
+      "description": "Seafood barbecue live grill dengan lobster, prawn skewer, dan tropical mocktail bar."
+    }
+  ],
+  "partnersSection": {
+    "badge": "04 • KLIEN & REKANAN",
+    "title": "Klien Korporat & Mitra Terpercaya",
+    "subtitle": "Dipercaya oleh korporasi telekomunikasi terdepan, perbankan nasional, BUMN, dan institusi terkemuka untuk melayani jamuan resmi dan momen prestisius.",
+    "footnote": "Memiliki lokasi acara pribadi atau gedung pilihan keluarga? Tim banquet kami siap melayani di seluruh venue dan kediaman se-Jabodetabek."
+  },
+  "partners": [
+    {
+      "id": "partner-1",
+      "name": "Telkom Indonesia",
+      "category": "Telekomunikasi Seluler",
+      "logoText": "TELKOMSEL",
+      "logoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvoSgAWhMYVR2J24rVEaWIcqPIeyIVUAYVgVaWylbuOw&s=10"
+    },
+    {
+      "id": "partner-2",
+      "name": "Kota Wisata Cibubur",
+      "category": "Property",
+      "logoText": "INDOSAT",
+      "logoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQinD0TKoJLbPl-dK821tVRhEFO1YjpIYMS4fjewKU-Tg&s=10"
+    },
+    {
+      "id": "partner-3",
+      "name": "Indosat M2",
+      "category": "Telekomunikasi Seluler",
+      "logoText": "XL AXIATA",
+      "logoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSv6jFpxXz4aszUUz2u58iZRvRECxp1F5ex-vkSKupJew&s=10"
+    },
+    {
+      "id": "partner-4",
+      "name": "BP2MI",
+      "category": "-",
+      "logoText": "BCA",
+      "logoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7akfpDVj_UhlkodAn6H0nYGBBpI-uh6VPmBItFBl2Fw&s=10"
+    },
+    {
+      "id": "partner-5",
+      "name": "Wartawangsa Residence",
+      "category": "-",
+      "logoText": "MANDIRI",
+      "logoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoRY1BjJkHbmsr93CgeOFaraUc6NaSuI9vbot0VGz5SA&s=10"
+    },
+    {
+      "id": "partner-6",
+      "name": "Indosat Ooredo",
+      "category": "Telekomunikasi Seluler",
+      "logoText": "PERTAMINA",
+      "logoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkFmwAW07MxYk-tNJV-vgCXZbRVrEht8ro1m1VE-KUFw&s=10"
+    },
+    {
+      "id": "partner-7",
+      "name": "Badan Kepegawaian Negara",
+      "category": "BUMN",
+      "logoText": "ASTRA",
+      "logoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzfm4v0nQXfzZCCEkyTdkDVrBBI6_sdHBAmiOz_TbHig&s=10"
+    },
+    {
+      "id": "client-1792903480979",
+      "name": "TMII Pesona Indonesia",
+      "category": "-",
+      "logoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqsmcpor9KYp7tHdnJCb38_6myUyff3L3kzGeKlZwnmA&s=10"
+    },
+    {
+      "id": "client-1792903524440",
+      "name": "ISTN Elektro",
+      "category": "-",
+      "logoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQi3BsOer8c81uFZHVryRQ3_xyitJmUv9ImJ7S9VLD3qA&s=10"
+    }
+  ],
+  "testimonialsSection": {
+    "badge": "05 • KISAH KEPUASAN KLIEN",
+    "title": "Ulasan Klien & Pasangan Pengantin",
+    "subtitle": "Senyuman para tamu dan kepuasan keluarga adalah kebanggaan terbesar bagi tim dapur kami."
+  },
+  "testimonials": [
+    {
+      "id": "testi-1",
+      "name": "Dr. Amanda & Raditya, S.T.",
+      "role": "Direktur PT Indosat M2",
+      "rating": 5,
+      "comment": "Semua tamu undangan tanpa henti memuji Zuppa Soup dan Kambing Gulingnya! Dagingnya empuk luar biasa dan dekorasi buffet-nya sangat mewah sesuai tema rose gold kami. Terima kasih Royal Rasa sudah membuat hari bahagia kami sempurna!",
+      "event": "1.200 Tamu • Pernikahan",
+      "avatarUrl": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80"
+    },
+    {
+      "id": "testi-2",
+      "name": "Bapak Hendra Wibowo",
+      "role": "Head of Corporate Communication PT Telkom Indonesia",
+      "rating": 5,
+      "comment": "Sudah 3 tahun berturut-turut mempercayakan catering gala dinner tahunan dan seminar nasional kepada tim Royal Rasa. Selalu tepat waktu, pramusaji sangat sigap, dan rasa makanan konsisten lezat bintang lima.",
+      "event": "850 Peserta • Gala Dinner BUMN",
+      "avatarUrl": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80"
+    },
+    {
+      "id": "testi-3",
+      "name": "Siti Nurhaliza & Dimas",
+      "role": "Direktur TMII ",
+      "rating": 5,
+      "comment": "Sesi food tasting-nya sangat profesional, chef-nya terbuka dengan sedikit request bumbu yang kami minta. Saat hari H, penyajian sangat tepat waktu dan porsinya melimpah, tidak ada kekhawatiran makanan kurang!",
+      "event": "300 Tamu • Garden Wedding",
+      "avatarUrl": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80"
+    }
+  ],
+  "faqsSection": {
+    "badge": "06 • TANYA JAWAB",
+    "title": "Pertanyaan yang Sering Diajukan",
+    "subtitle": "Informasi esensial terkait proses booking tanggal, sesi food tasting, dan operasional boga kami."
+  },
+  "faqs": [
+    {
+      "id": "faq-1",
+      "question": "Berapa minimal pemesanan dan berapa hari sebelumnya saya harus booking?",
+      "answer": "Untuk paket prasmanan wedding, minimal pemesanan adalah 300 porsi dan disarankan booking H-3 hingga H-6 bulan sebelum acara untuk mengamankan tanggal dan gedung. Untuk Nasi Box atau tumpeng, minimal pemesanan 30 box dan dapat dipesan H-3 hari."
+    },
+    {
+      "id": "faq-2",
+      "question": "Apakah ada sesi Food Tasting sebelum kami memutuskan kontrak?",
+      "answer": "Tentu saja! Kami menyediakan sesi Food Tasting GRATIS untuk calon pengantin dan keluarga inti (hingga 4 orang) di Tasting Lounge eksklusif kami di Senopati, Jakarta Selatan."
+    },
+    {
+      "id": "faq-3",
+      "question": "Bagaimana sistem pembayaran dan jaminan tanggal acaranya?",
+      "answer": "Sistem pembayaran kami sangat fleksibel: Booking Fee / DP awal sebesar 20% untuk mengunci tanggal acara, 50% pembayaran termin kedua setelah food tasting (H-30), dan pelunasan sisa 30% pada H-14 sebelum hari pelaksanaan."
+    },
+    {
+      "id": "faq-4",
+      "question": "Apakah katering sudah termasuk meja, piring, dekorasi, dan pramusaji (waiter)?",
+      "answer": "Ya, semua paket prasmanan sudah all-in termasuk meja buffet dengan dekorasi bunga segar & skirting mewah, peralatan makan chinaware lengkap, chafing dish pemanas, serta waiter berseragam resmi yang terlatih secara profesional."
+    },
+    {
+      "id": "faq-5",
+      "question": "Bagaimana jika ada sisa makanan setelah acara selesai?",
+      "answer": "Seluruh sisa hidangan yang masih layak konsumsi adalah hak penuh dari pemesan. Tim kami akan membantu mengemasnya dengan wadah higienis khusus yang kami sediakan agar mudah dibawa pulang oleh keluarga Anda."
+    }
+  ],
+  "lastUpdated": "2026-10-25T04:47:27.039Z"
+}

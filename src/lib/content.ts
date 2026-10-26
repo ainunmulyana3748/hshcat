@@ -87,7 +87,8 @@ export async function saveContent(newData: CateringContent): Promise<CateringCon
       addRandomSuffix: false,
       allowOverwrite: true,
       contentType: "application/json",
-      cacheControlMaxAge: 60,
+      // Konten CMS harus langsung menampilkan versi terbaru setelah disimpan.
+      cacheControlMaxAge: 0,
     });
   } else {
     await fs.writeFile(DATA_FILE_PATH, jsonString, "utf-8");

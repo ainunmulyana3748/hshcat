@@ -2,10 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import fs from "fs/promises";
 import path from "path";
 import { put } from "@vercel/blob";
-import {
-  BLOB_STORAGE_SETUP_MESSAGE,
-  isBlobStorageConfigured,
-} from "@/lib/blob-storage";
+import { shouldUseBlobStorage } from "@/lib/blob-storage";
 
 // Helper to safely delete file inside public/uploads
 async function safelyDeleteUploadFile(fileUrl?: string | null) {
@@ -76,7 +73,7 @@ export async function POST(req: NextRequest) {
     // Bersihkan nama file dan beri timestamp
     const cleanName = file.name.replace(/[^a-zA-Z0-9.-]/g, "_");
     const uniqueFileName = `${Date.now()}_${cleanName}`;
-    if (isBlobStorageConfigured()) {
+    if (shouldUseBlobStorage()) {
       const blob = await put(`uploads/${uniqueFileName}`, buffer, {
         access: "public",
         addRandomSuffix: true,
@@ -93,10 +90,6 @@ export async function POST(req: NextRequest) {
         fileName: uniqueFileName,
         message: "Foto berhasil diunggah ke penyimpanan cloud!",
       });
-    }
-
-    if (process.env.NODE_ENV === "production") {
-      throw new Error(BLOB_STORAGE_SETUP_MESSAGE);
     }
 
     const uploadDir = path.join(process.cwd(), "public", "uploads");

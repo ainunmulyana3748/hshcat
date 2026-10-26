@@ -2,10 +2,7 @@ import fs from "fs/promises";
 import path from "path";
 import { list, put } from "@vercel/blob";
 import { CateringContent } from "@/types/content";
-import {
-  BLOB_STORAGE_SETUP_MESSAGE,
-  isBlobStorageConfigured,
-} from "@/lib/blob-storage";
+import { shouldUseBlobStorage } from "@/lib/blob-storage";
 
 const DATA_FILE_PATH = path.join(process.cwd(), "src", "data", "catering-content.json");
 const CONTENT_BLOB_PATH = "cms/catering-content.json";
@@ -50,7 +47,7 @@ function ensureSeoSettings(content: CateringContent): CateringContent {
 
 export async function getContent(): Promise<CateringContent> {
   try {
-    const cloudData = isBlobStorageConfigured() ? await readCloudContent() : null;
+    const cloudData = shouldUseBlobStorage() ? await readCloudContent() : null;
     const data: CateringContent = cloudData
       ? cloudData
       : JSON.parse(await fs.readFile(DATA_FILE_PATH, "utf-8"));
@@ -64,7 +61,11 @@ export async function getContent(): Promise<CateringContent> {
     return data;
   } catch (error) {
     console.error("Gagal membaca file data katering:", error);
-    throw new Error("Gagal memuat data konten.");
+    throw new Error(
+      error instanceof Error
+        ? `Gagal memuat data konten: ${error.message}`
+        : "Gagal memuat data konten. Periksa konfigurasi penyimpanan cloud.",
+    );
   }
 }
 
@@ -80,7 +81,7 @@ export async function saveContent(newData: CateringContent): Promise<CateringCon
   newData.lastUpdated = new Date().toISOString();
 
   const jsonString = JSON.stringify(newData, null, 2);
-  if (isBlobStorageConfigured()) {
+  if (shouldUseBlobStorage()) {
     await put(CONTENT_BLOB_PATH, jsonString, {
       access: "public",
       addRandomSuffix: false,
@@ -88,8 +89,6 @@ export async function saveContent(newData: CateringContent): Promise<CateringCon
       contentType: "application/json",
       cacheControlMaxAge: 60,
     });
-  } else if (process.env.NODE_ENV === "production") {
-    throw new Error(BLOB_STORAGE_SETUP_MESSAGE);
   } else {
     await fs.writeFile(DATA_FILE_PATH, jsonString, "utf-8");
   }

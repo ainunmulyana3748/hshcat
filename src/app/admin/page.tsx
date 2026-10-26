@@ -105,7 +105,10 @@ export default function AdminPage() {
         console.error("Gagal memuat konten CMS:", error);
         setSaveMessage({
           type: "error",
-          text: "Gagal memuat konten CMS. Periksa koneksi server lalu muat ulang halaman.",
+          text:
+            error instanceof Error
+              ? `Gagal memuat konten CMS: ${error.message}`
+              : "Gagal memuat konten CMS. Periksa koneksi server lalu muat ulang halaman.",
         });
       })
       .finally(() => setIsLoading(false));

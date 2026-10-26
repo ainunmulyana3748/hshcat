@@ -39,9 +39,9 @@ Website Landing Page & Content Management System (CMS) Premium untuk usaha Jasa 
 
 Saat development lokal, konten CMS menggunakan file `src/data/catering-content.json` dan foto disimpan di `public/uploads/`.
 
-Pada deployment serverless (seperti Vercel), filesystem aplikasi bersifat read-only dan tidak dapat digunakan untuk penyimpanan permanen. Hubungkan **Vercel Blob** ke project untuk menyimpan konten CMS dan foto:
+Pada deployment serverless (seperti Vercel), filesystem aplikasi bersifat read-only dan tidak dapat digunakan untuk penyimpanan permanen. Hubungkan **Vercel Blob** dengan akses **Public** ke project untuk menyimpan konten CMS dan foto. URL foto perlu dapat dibuka oleh pengunjung website.
 
-1. Buat Blob Store dari dashboard Vercel dan hubungkan ke project ini.
+1. Buat Blob Store dengan akses **Public** dari dashboard Vercel dan hubungkan ke project ini. Tipe akses ditentukan saat store dibuat; jika store yang terhubung bertipe Private, buat atau hubungkan store Public.
 2. Pastikan deployment memiliki `BLOB_READ_WRITE_TOKEN`, atau gunakan koneksi Blob dengan Vercel OIDC dan `BLOB_STORE_ID`.
 3. Aktifkan environment Production (dan Preview jika diperlukan), lalu deploy ulang.
 

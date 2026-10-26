@@ -75,7 +75,7 @@ export async function POST(req: NextRequest) {
     const uniqueFileName = `${Date.now()}_${cleanName}`;
     if (shouldUseBlobStorage()) {
       const blob = await put(`uploads/${uniqueFileName}`, buffer, {
-        access: "public",
+        access: "private",
         addRandomSuffix: true,
         contentType: file.type,
       });
@@ -86,7 +86,7 @@ export async function POST(req: NextRequest) {
 
       return NextResponse.json({
         success: true,
-        url: blob.url,
+        url: `/api/file?pathname=${encodeURIComponent(blob.pathname)}`,
         fileName: uniqueFileName,
         message: "Foto berhasil diunggah ke penyimpanan cloud!",
       });

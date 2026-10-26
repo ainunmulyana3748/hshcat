@@ -35,13 +35,17 @@ Website Landing Page & Content Management System (CMS) Premium untuk usaha Jasa 
 
 ---
 
-## 🛠️ CMS Tanpa Database (Flat-File Storage)
+## 🛠️ Penyimpanan CMS
 
-Sistem ini **tidak memerlukan MySQL / PostgreSQL / database server sama sekali**. 
-* Seluruh data teks, pengaturan, dan paket tersimpan dalam file:  
-  `src/data/catering-content.json`
-* File foto yang diunggah disimpan di folder:  
-  `public/uploads/`
+Saat development lokal, konten CMS menggunakan file `src/data/catering-content.json` dan foto disimpan di `public/uploads/`.
+
+Pada deployment serverless (seperti Vercel), filesystem aplikasi bersifat read-only dan tidak dapat digunakan untuk penyimpanan permanen. Hubungkan **Vercel Blob** ke project untuk menyimpan konten CMS dan foto:
+
+1. Buat Blob Store dari dashboard Vercel dan hubungkan ke project ini.
+2. Pastikan deployment memiliki `BLOB_READ_WRITE_TOKEN`, atau gunakan koneksi Blob dengan Vercel OIDC dan `BLOB_STORE_ID`.
+3. Aktifkan environment Production (dan Preview jika diperlukan), lalu deploy ulang.
+
+Untuk menggunakan penyimpanan cloud saat development lokal, tambahkan `BLOB_READ_WRITE_TOKEN` ke `.env.local`. Jangan commit token tersebut.
 
 ### Aturan Khusus Portofolio (Maksimal 10 Foto & Sistem Pengorbanan):
 * Portofolio memiliki kuota ketat maksimal **10 foto**.

@@ -1,6 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import fs from "fs/promises";
 import path from "path";
+import { put } from "@vercel/blob";
+import {
+  BLOB_STORAGE_SETUP_MESSAGE,
+  isBlobStorageConfigured,
+} from "@/lib/blob-storage";
 
 // Helper to safely delete file inside public/uploads
 async function safelyDeleteUploadFile(fileUrl?: string | null) {
@@ -68,21 +73,41 @@ export async function POST(req: NextRequest) {
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
-    // Pastikan folder public/uploads ada
-    const uploadDir = path.join(process.cwd(), "public", "uploads");
-    await fs.mkdir(uploadDir, { recursive: true });
-
-    // Hapus file lama jika ada (agar tidak ada sampah file yang tersimpan)
-    if (oldUrl) {
-      await safelyDeleteUploadFile(oldUrl);
-    }
-
     // Bersihkan nama file dan beri timestamp
     const cleanName = file.name.replace(/[^a-zA-Z0-9.-]/g, "_");
     const uniqueFileName = `${Date.now()}_${cleanName}`;
+    if (isBlobStorageConfigured()) {
+      const blob = await put(`uploads/${uniqueFileName}`, buffer, {
+        access: "public",
+        addRandomSuffix: true,
+        contentType: file.type,
+      });
+
+      if (oldUrl) {
+        await safelyDeleteUploadFile(oldUrl);
+      }
+
+      return NextResponse.json({
+        success: true,
+        url: blob.url,
+        fileName: uniqueFileName,
+        message: "Foto berhasil diunggah ke penyimpanan cloud!",
+      });
+    }
+
+    if (process.env.NODE_ENV === "production") {
+      throw new Error(BLOB_STORAGE_SETUP_MESSAGE);
+    }
+
+    const uploadDir = path.join(process.cwd(), "public", "uploads");
+    await fs.mkdir(uploadDir, { recursive: true });
     const filePath = path.join(uploadDir, uniqueFileName);
 
     await fs.writeFile(filePath, buffer);
+
+    if (oldUrl) {
+      await safelyDeleteUploadFile(oldUrl);
+    }
 
     const publicUrl = `/uploads/${uniqueFileName}`;
 
@@ -97,7 +122,10 @@ export async function POST(req: NextRequest) {
     return NextResponse.json(
       {
         success: false,
-        message: "Gagal mengunggah foto: " + (error as Error).message,
+        message:
+          error instanceof Error
+            ? error.message
+            : "Gagal mengunggah foto. Silakan coba lagi.",
       },
       { status: 500 }
     );

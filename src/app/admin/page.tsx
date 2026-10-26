@@ -188,20 +188,24 @@ export default function AdminPage() {
       });
 
       const json = await res.json();
-      if (json.success) {
-        setContent(json.data);
-        setSaveMessage({
-          type: "success",
-          text: "Semua perubahan berhasil disimpan langsung ke file JSON (tanpa database)!",
-        });
-        setTimeout(() => setSaveMessage(null), 4000);
-      } else {
-        setSaveMessage({ type: "error", text: json.message });
+      if (!res.ok || !json.success || !json.data) {
+        throw new Error(json.message || "Perubahan gagal disimpan.");
       }
-    } catch (err) {
+
+      setContent(json.data);
+      setSaveMessage({
+        type: "success",
+        text: "Perubahan berhasil disimpan dan siap ditampilkan di website.",
+      });
+      setTimeout(() => setSaveMessage(null), 5000);
+    } catch (error: unknown) {
+      console.error("Gagal menyimpan perubahan CMS:", error);
       setSaveMessage({
         type: "error",
-        text: "Gagal menyimpan: " + (err as Error).message,
+        text:
+          error instanceof Error
+            ? error.message
+            : "Gagal menyimpan perubahan. Periksa koneksi lalu coba lagi.",
       });
     } finally {
       setIsSaving(false);
@@ -218,7 +222,7 @@ export default function AdminPage() {
       body: formData,
     });
     const json = await res.json();
-    if (!json.success) {
+    if (!res.ok || !json.success) {
       throw new Error(json.message || "Gagal mengunggah gambar.");
     }
     return json.url;
@@ -230,9 +234,10 @@ export default function AdminPage() {
     if (!content) return;
 
     if (content.portfolio.length >= 10) {
-      alert(
-        "KUOTA PENUH (10/10 FOTO)!\n\nSesuai aturan sistem, Anda harus mengorbankan (menghapus) salah satu foto portofolio yang ada di bawah sebelum bisa menambahkan foto baru.",
-      );
+      setSaveMessage({
+        type: "error",
+        text: "Kuota portofolio penuh (10/10 foto). Hapus atau ganti salah satu foto terlebih dahulu.",
+      });
       return;
     }
 
@@ -242,16 +247,25 @@ export default function AdminPage() {
       setIsUploading(true);
       try {
         finalImageUrl = await uploadImageFile(newPhotoFile);
-      } catch (err) {
-        alert((err as Error).message);
-        setIsUploading(false);
+      } catch (error: unknown) {
+        setSaveMessage({
+          type: "error",
+          text:
+            error instanceof Error
+              ? error.message
+              : "Gagal mengunggah foto. Silakan coba lagi.",
+        });
         return;
+      } finally {
+        setIsUploading(false);
       }
-      setIsUploading(false);
     }
 
     if (!finalImageUrl) {
-      alert("Mohon pilih file gambar atau masukkan URL gambar!");
+      setSaveMessage({
+        type: "error",
+        text: "Pilih file gambar atau masukkan URL gambar terlebih dahulu.",
+      });
       return;
     }
 
@@ -312,9 +326,14 @@ export default function AdminPage() {
       const updatedContent = { ...content, portfolio: updatedPortfolio };
       setContent(updatedContent);
       handleSave(updatedContent);
-      alert(`Foto di Slot #${index + 1} berhasil diganti dengan foto baru!`);
-    } catch (err) {
-      alert("Gagal mengganti foto: " + (err as Error).message);
+    } catch (error: unknown) {
+      setSaveMessage({
+        type: "error",
+        text:
+          error instanceof Error
+            ? error.message
+            : "Gagal mengganti foto. Silakan coba lagi.",
+      });
     } finally {
       setIsUploading(false);
     }
@@ -415,12 +434,34 @@ export default function AdminPage() {
     );
   }
 
-  if (isLoading || !content) {
+  if (isLoading) {
     return (
       <div className="min-h-screen bg-[#181716] flex items-center justify-center text-white">
         <div className="flex items-center gap-3">
           <RefreshCw className="w-5 h-5 text-[#B38E5D] animate-spin" />
           <span className="text-sm">Memuat data CMS katering...</span>
+        </div>
+      </div>
+    );
+  }
+
+  if (!content) {
+    return (
+      <div className="min-h-screen bg-[#181716] flex items-center justify-center p-4 text-white">
+        <div
+          role="alert"
+          className="max-w-lg rounded-2xl border border-rose-800 bg-rose-950/40 p-6 text-center"
+        >
+          <AlertTriangle className="mx-auto mb-3 h-6 w-6 text-rose-300" />
+          <p className="text-sm text-rose-100">
+            {saveMessage?.text || "Konten CMS gagal dimuat. Silakan muat ulang halaman."}
+          </p>
+          <button
+            onClick={() => window.location.reload()}
+            className="mt-4 rounded-lg bg-white px-4 py-2 text-xs font-semibold text-[#1C1917]"
+          >
+            Muat Ulang
+          </button>
         </div>
       </div>
     );
@@ -490,7 +531,9 @@ export default function AdminPage() {
       {/* Save Notification */}
       {saveMessage && (
         <div
-          className={`fixed bottom-6 right-6 z-50 p-4 rounded-xl shadow-2xl flex items-center gap-3 border animate-in slide-in-from-bottom duration-300 ${
+          role={saveMessage.type === "error" ? "alert" : "status"}
+          aria-live={saveMessage.type === "error" ? "assertive" : "polite"}
+          className={`fixed bottom-4 left-4 right-4 z-50 flex items-start gap-3 rounded-xl border p-4 shadow-2xl animate-in slide-in-from-bottom duration-300 sm:bottom-6 sm:left-auto sm:right-6 sm:max-w-md ${
             saveMessage.type === "success"
               ? "bg-emerald-950 text-emerald-200 border-emerald-500"
               : "bg-rose-950 text-rose-200 border-rose-500"
@@ -501,7 +544,7 @@ export default function AdminPage() {
           ) : (
             <AlertTriangle className="w-5 h-5 text-rose-400" />
           )}
-          <span className="text-xs sm:text-sm font-medium">
+          <span className="break-words text-xs font-medium sm:text-sm">
             {saveMessage.text}
           </span>
         </div>
@@ -2355,7 +2398,13 @@ export default function AdminPage() {
                         company: { ...content.company, logoUrl },
                       });
                     } catch (err) {
-                      alert((err as Error).message);
+                      setSaveMessage({
+                        type: "error",
+                        text:
+                          err instanceof Error
+                            ? err.message
+                            : "Gagal mengunggah logo. Silakan coba lagi.",
+                      });
                     } finally {
                       setIsUploading(false);
                       e.target.value = "";

@@ -12,8 +12,15 @@ export async function GET() {
       { headers: { "Cache-Control": "no-store, max-age=0" } },
     );
   } catch (error) {
+    console.error("Gagal memuat konten CMS:", error);
     return NextResponse.json(
-      { success: false, message: (error as Error).message },
+      {
+        success: false,
+        message:
+          error instanceof Error
+            ? error.message
+            : "Gagal memuat konten CMS. Silakan coba lagi.",
+      },
       { status: 500 }
     );
   }
@@ -50,8 +57,15 @@ export async function POST(req: NextRequest) {
       data: saved,
     });
   } catch (error) {
+    console.error("Gagal menyimpan konten CMS:", error);
     return NextResponse.json(
-      { success: false, message: (error as Error).message },
+      {
+        success: false,
+        message:
+          error instanceof Error
+            ? error.message
+            : "Gagal menyimpan perubahan. Silakan coba lagi.",
+      },
       { status: 500 }
     );
   }

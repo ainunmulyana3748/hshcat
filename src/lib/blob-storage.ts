@@ -6,5 +6,7 @@ export function isBlobStorageConfigured(): boolean {
 }
 
 export function shouldUseBlobStorage(): boolean {
-  return process.env.NODE_ENV === "production" || isBlobStorageConfigured();
+  // Jangan memaksa Blob hanya karena environment production. Jika token belum
+  // terpasang, CMS tetap dapat membaca sumber data lokal dan tidak crash saat boot.
+  return isBlobStorageConfigured();
 }

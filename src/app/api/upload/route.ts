@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import fs from "fs/promises";
 import path from "path";
-import { put } from "@vercel/blob";
+import { del, put } from "@vercel/blob";
 import { shouldUseBlobStorage } from "@/lib/blob-storage";
 
 // Helper to safely delete file inside public/uploads
@@ -75,7 +75,7 @@ export async function POST(req: NextRequest) {
     const uniqueFileName = `${Date.now()}_${cleanName}`;
     if (shouldUseBlobStorage()) {
       const blob = await put(`uploads/${uniqueFileName}`, buffer, {
-        access: "public",
+        access: "private",
         addRandomSuffix: true,
         contentType: file.type,
       });
@@ -86,7 +86,7 @@ export async function POST(req: NextRequest) {
 
       return NextResponse.json({
         success: true,
-        url: blob.url,
+        url: `/api/file?pathname=${encodeURIComponent(blob.pathname)}`,
         fileName: uniqueFileName,
         message: "Foto berhasil diunggah ke penyimpanan cloud!",
       });
@@ -136,7 +136,17 @@ export async function DELETE(req: NextRequest) {
       );
     }
 
-    await safelyDeleteUploadFile(url);
+    if (url.startsWith("http://") || url.startsWith("https://")) {
+      if (!shouldUseBlobStorage()) {
+        return NextResponse.json(
+          { success: false, message: "Penyimpanan cloud belum dikonfigurasi." },
+          { status: 503 },
+        );
+      }
+      await del(url);
+    } else {
+      await safelyDeleteUploadFile(url);
+    }
 
     return NextResponse.json({
       success: true,

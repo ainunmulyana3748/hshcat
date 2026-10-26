@@ -1,6 +1,6 @@
 import fs from "fs/promises";
 import path from "path";
-import { list, put } from "@vercel/blob";
+import { get, put } from "@vercel/blob";
 import { CateringContent } from "@/types/content";
 import { shouldUseBlobStorage } from "@/lib/blob-storage";
 
@@ -8,19 +8,10 @@ const DATA_FILE_PATH = path.join(process.cwd(), "src", "data", "catering-content
 const CONTENT_BLOB_PATH = "cms/catering-content.json";
 
 async function readCloudContent(): Promise<CateringContent | null> {
-  const { blobs } = await list({ prefix: CONTENT_BLOB_PATH, limit: 1 });
-  const contentBlob = blobs.find(
-    (blob) => blob.pathname === CONTENT_BLOB_PATH,
-  );
+  const result = await get(CONTENT_BLOB_PATH, { access: "private" });
+  if (!result) return null;
 
-  if (!contentBlob) return null;
-
-  const response = await fetch(contentBlob.url, { cache: "no-store" });
-  if (!response.ok) {
-    throw new Error(`Gagal membaca konten dari penyimpanan cloud (${response.status}).`);
-  }
-
-  return JSON.parse(await response.text()) as CateringContent;
+  return JSON.parse(await new Response(result.stream).text()) as CateringContent;
 }
 
 function ensureSeoSettings(content: CateringContent): CateringContent {
@@ -83,11 +74,12 @@ export async function saveContent(newData: CateringContent): Promise<CateringCon
   const jsonString = JSON.stringify(newData, null, 2);
   if (shouldUseBlobStorage()) {
     await put(CONTENT_BLOB_PATH, jsonString, {
-      access: "public",
+      access: "private",
       addRandomSuffix: false,
       allowOverwrite: true,
       contentType: "application/json",
-      cacheControlMaxAge: 60,
+      // Konten CMS harus langsung menampilkan versi terbaru setelah disimpan.
+      cacheControlMaxAge: 0,
     });
   } else {
     await fs.writeFile(DATA_FILE_PATH, jsonString, "utf-8");
